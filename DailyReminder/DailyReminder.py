@@ -20,7 +20,6 @@ except ImportError:
 class Application(tk.Frame):
     def __init__(self, master=None):
         tk.Frame.__init__(self, master)
-        #self.current_task = tk.StringVar()
         self.long_task = tk.StringVar()
         self.short_task = tk.StringVar()
         self.master.title('Task')
@@ -37,14 +36,11 @@ class Application(tk.Frame):
         try:
             with open('tasks.txt', 'br') as f_obj:
                 tasks = pickle.load(f_obj)
-                #self.current_task.set(tasks['current_task'])
                 self.long_task.set(tasks['long_task'])
                 self.short_task.set(tasks['short_task'])
                 self.long_task_database = set(tasks['long_task_database'])
                 self.short_task_database = set(tasks['short_task_database'])
-                #print(self.task_database)
         except Exception as e:
-            #print(e)
             self.long_task.set("Please add long-term task") 
             self.short_task.set("Please add short-term task") 
             self.long_task_database = set()
@@ -77,7 +73,6 @@ class Application(tk.Frame):
             with open('tasks.txt', 'bw') as f_obj:
                 pickle.dump(tasks, f_obj)
         except Exception as e:
-            #print(e)
             messagebox.showinfo('Fail', "Fail to save task in local file. \nPlease contact the author(s1len0eye@gmail.com)")
             
     def setLongTask(self):
